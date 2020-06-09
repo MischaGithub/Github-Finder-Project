@@ -1,10 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+
 // Using functional Component and destructing method
 const Navbar = ({ icon, title }) => {
   return (
     // Creating the navbar with its icon
+    // And then the Home and About links
     <nav className="navbar bg-primary">
       <h1>
         <i className={icon} /> {title}
