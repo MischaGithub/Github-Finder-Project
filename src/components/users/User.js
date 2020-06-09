@@ -1,5 +1,6 @@
 import React, { Fragment, Component } from "react";
 import Spinner from "../layout/Spinner";
+import Repos from "../repos/Repos";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
@@ -7,13 +8,16 @@ export class User extends Component {
   //
   componentDidMount() {
     this.props.getUser(this.props.match.params.login);
+    this.props.getUserRepos(this.props.match.params.login);
   }
 
   // PropTypes
-  static proType = {
+  static propTypes = {
     loading: PropTypes.bool,
     user: PropTypes.object.isRequired,
+    repos: PropTypes.array.isRequired,
     getUser: PropTypes.func.isRequired,
+    getUserRepos: PropTypes.func.isRequired,
   };
   render() {
     // Pulling all the data from Github
@@ -33,12 +37,13 @@ export class User extends Component {
       hierable,
     } = this.props.user;
 
-    const { loading } = this.props;
+    const { loading, repos } = this.props;
 
     // If Loading then return a Spinner
     if (loading) return <Spinner />;
     return (
-      // Having a link in order to go back to the Home Page
+      // User Component UI & layout
+      // So we have the layout according to what the desired outcome should be
       <Fragment>
         <Link to="/" className="btn btn-light">
           Back to search
@@ -102,6 +107,7 @@ export class User extends Component {
           <div className="badge badge-danger">Public Repos: {public_repos}</div>
           <div className="badge badge-dark">Public Gists: {public_gists}</div>
         </div>
+        <Repos repos={repos} />
       </Fragment>
     );
   }
