@@ -1,26 +1,77 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Fragment, Component } from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+// Import the Navbar File
+import Navbar from "./components/layout/Navbar";
+// Import User file
+import Users from "./components/users/Users";
+import Search from "./components/users/Search";
+import Alert from "./components/layout/Alert";
+import About from "./components/pages/About";
+import axios from "axios";
+import "./App.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  // The app state
+  state = {
+    users: [],
+    loading: false,
+    alert: null,
+  };
+
+  // Search Github users
+  searchUsers = async (text) => {
+    this.setState({ loading: true });
+
+    const res = await axios.get(`https://api.github.com/search/users?q=${text}&client_id=
+    ${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=
+    ${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`);
+
+    this.setState({ users: res.data.items, loading: false });
+  };
+
+  // Clear Users from state
+  clearUsers = () => this.setState({ users: [], loading: false });
+
+  // Set Alert
+  setAlert = (msg, type) => {
+    this.setState({ alert: { msg, type } });
+
+    // Set timeout
+    setTimeout(() => this.setState({ alert: null }), 5000);
+  };
+
+  render() {
+    // Able to pull out users and loading
+    const { users, loading } = this.state;
+    return (
+      <Router>
+        <div className="App">
+          <Navbar />
+          <div className="container">
+            <Alert alert={this.state.alert} />
+            <Switch>
+              <Route
+                exact
+                path="/"
+                render={(props) => (
+                  <Fragment>
+                    <Search
+                      searchUsers={this.searchUsers}
+                      clearUsers={this.clearUsers}
+                      showClear={this.state.users.length > 0 ? true : false}
+                      setAlert={this.setAlert}
+                    />
+                    <Users loading={loading} users={users} />
+                  </Fragment>
+                )}
+              />
+              <Route exact path="/about" component={About} />
+            </Switch>
+          </div>
+        </div>
+      </Router>
+    );
+  }
 }
 
 export default App;
