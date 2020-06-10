@@ -2,12 +2,13 @@
 
 /* Global Styles */
 :root {
-  --primary-color: #3554dc;
+  --primary-color: #2a37ee;
   --dark-color: #333333;
   --light-color: #f4f4f4;
   --danger-color: #dc3545;
   --success-color: #28a745;
   --navbar-color: #000000;
+  --repo-text-color: #363b37;
 }
 
 * {
@@ -25,7 +26,7 @@ body {
 }
 
 a {
-  color: var(--primary-color);
+  color: var(--repo-text-color);
   text-decoration: none;
 }
 
@@ -113,8 +114,9 @@ img {
 /* Cards */
 .card {
   padding: 1rem;
-  border: #ccc 1px dotted;
+  border: #ccc 1px solid;
   margin: 0.7rem 0;
+  background-color: #fff;
 }
 
 /* List */
@@ -340,11 +342,12 @@ textarea {
   border: 1px solid #ccc;
 }
 
-#showcase {
+.App {
   background-image: url("./components/layout/landing_github_icon.png");
   background-size: cover;
   background-position: center;
-  height: 100vh;
+  background-attachment: fixed;
+  min-height: 100vh;
 }
 
 input[type="submit"],

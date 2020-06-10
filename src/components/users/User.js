@@ -39,7 +39,7 @@ const User = ({ match }) => {
     // User Component UI & layout
     // So we have the layout according to what the desired outcome should be
     <Fragment>
-      <Link to="/" className="btn btn-light">
+      <Link to="/" className="btn btn-dark">
         Back to search
       </Link>
       Hireable:{" "}
