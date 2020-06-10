@@ -29,6 +29,14 @@ export default (state, action) => {
         users: [],
         loading: false,
       };
+    // Get Repos Case
+    case GET_REPOS: {
+      return {
+        ...state,
+        repos: action.payload,
+        loading: false,
+      };
+    }
     // Set Loading Case
     case SET_LOADING:
       return {
