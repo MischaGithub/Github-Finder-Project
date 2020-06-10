@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import UserItem from "./UserItem";
 // Importing the Spinner
 import Spinner from "../layout/Spinner";
-// Importing PropTypes
-import PropTypes from "prop-types";
+import GithubContext from "../../context/github/githubContext";
 
 // Change Users to a functional component
-// Destructing it to only pull out users and loading
-const Users = ({ users, loading }) => {
+const Users = () => {
+  // Initializing githubContext
+  const githubContext = useContext(GithubContext);
+
+  const { loading, users } = githubContext;
   // If statement
   if (loading) {
     return <Spinner />;
@@ -21,11 +23,6 @@ const Users = ({ users, loading }) => {
       </div>
     );
   }
-};
-
-Users.propTypes = {
-  users: PropTypes.array.isRequired,
-  loading: PropTypes.bool.isRequired,
 };
 
 // Style the user profile to the grid style

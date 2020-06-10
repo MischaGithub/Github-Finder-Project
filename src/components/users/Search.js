@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import GithubContext from "../../context/github/githubContext";
 
 // Converted a  Search class to a functional component and using the useState Hook
-const Search = ({ showClear, clearUsers, setAlert }) => {
+const Search = ({ setAlert }) => {
   const githubContext = useContext(GithubContext);
   const [text, setText] = useState("");
 
@@ -40,9 +40,12 @@ const Search = ({ showClear, clearUsers, setAlert }) => {
           className="btn btn-dark btn-block"
         />
       </form>
-      {showClear && (
+      {githubContext.users.length > 0 && (
         // THE CLEAR BUTTON
-        <button className="btn btn-light btn-block" onClick={clearUsers}>
+        <button
+          className="btn btn-light btn-block"
+          onClick={githubContext.clearUsers}
+        >
           Clear
         </button>
       )}
@@ -51,8 +54,6 @@ const Search = ({ showClear, clearUsers, setAlert }) => {
 };
 
 Search.propTypes = {
-  clearUsers: PropTypes.func.isRequired,
-  showClear: PropTypes.bool.isRequired,
   setAlert: PropTypes.func.isRequired,
 };
 
