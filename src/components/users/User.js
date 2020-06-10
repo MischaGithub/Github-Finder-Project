@@ -49,7 +49,7 @@ const User = ({ match }) => {
         <i className="fas fa-times-circle text-danger" />
       )}
       <div className="card grid-2">
-        <div className="all-centre">
+        <div className="a:hover">
           <img
             src={avatar_url}
             className="round-img"

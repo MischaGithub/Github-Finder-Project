@@ -7,6 +7,7 @@
   --light-color: #f4f4f4;
   --danger-color: #dc3545;
   --success-color: #28a745;
+  --navbar-color: #000000;
 }
 
 * {
@@ -285,6 +286,14 @@ img {
   color: #fff;
 }
 
+.btn-navbar,
+.bg-navbar,
+.badge-navbar,
+.alert-navbar {
+  background: var(--navbar-color);
+  color: #fff;
+}
+
 .btn-white,
 .bg-white,
 .badge-white,
@@ -329,6 +338,13 @@ textarea {
   padding: 0.4rem;
   font-size: 1.2rem;
   border: 1px solid #ccc;
+}
+
+#showcase {
+  background-image: url("./components/layout/landing_github_icon.png");
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
 }
 
 input[type="submit"],
