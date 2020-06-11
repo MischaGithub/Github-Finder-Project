@@ -1,6 +1,6 @@
+// Imported files relevant to the users
 import React, { useContext } from "react";
 import UserItem from "./UserItem";
-// Importing the Spinner
 import Spinner from "../layout/Spinner";
 import GithubContext from "../../context/github/githubContext";
 

@@ -1,5 +1,7 @@
+// Imported the Fragment
 import React, { Fragment } from "react";
 
+// Simply here is just some info about the app
 const About = () => {
   return (
     <Fragment>

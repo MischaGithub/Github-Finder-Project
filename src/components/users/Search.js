@@ -1,5 +1,5 @@
+// All the imported files
 import React, { useState, useContext } from "react";
-
 import GithubContext from "../../context/github/githubContext";
 import AlertContext from "../../context/alert/alertContext";
 
@@ -22,7 +22,6 @@ const Search = () => {
 
   // Allowing the search bar to take input
   // With an event parameter
-
   const onChange = (e) => setText(e.target.value);
 
   return (

@@ -1,5 +1,8 @@
+// Imported file
 import React from "react";
 
+// If a user should search a page that is not within the app
+// It should return a not found page
 const NotFound = () => {
   return (
     <div>
