@@ -13,7 +13,6 @@ const User = ({ match }) => {
   useEffect(() => {
     getUser(match.params.login);
     getUserRepos(match.params.login);
-    //eslint-disable-next-line
   }, []);
 
   // Pulling all the data from Github
